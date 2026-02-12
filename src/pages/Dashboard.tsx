@@ -20,7 +20,7 @@ const Dashboard = ({ transactions, onAjouter, onSupprimer }: Props) => {
             </div>
             <div className="col-md-7">
                 <CarteResume transactions={transactions} />
-                <ListeTransactions transactions={transactions} onSupprimer={onSupprimer} />
+                <ListeTransactions transactions={transactions} onSupprimer={onSupprimer} typeMessageVide="revenu et depense"/>
             </div>
         </div>
 

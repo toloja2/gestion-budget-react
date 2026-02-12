@@ -5,24 +5,35 @@ interface Props {
     onAjouter: (transaction: Transaction) => void
 }
 
+const categories = [
+    "Nourriture",
+    "Transport",
+    "Loyer",
+    "Salaire",
+    "Loisir",
+    "Autre"
+]
+
 const FormulaireTransaction = ({ onAjouter }: Props) => {
     const [titre, setTitre] = useState('');
     const [montant, setMontant] = useState('');
     const [type, setType] = useState('Revenu');
+    const [categorie, setCategorie] = useState('');
     const [erreur, setErreur] = useState('');
 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if(!titre || Number(montant) <= 0){
+        if (!titre || Number(montant) <= 0) {
             setErreur("Veuillez remplir correctement tous les champs")
         }
 
         setErreur("")
         const nouvelleTransaction: Transaction = {
             id: Date.now().toString(),
-            titre,
+            titre: titre,
             montant: Number(montant),
+            categorie: categorie,
             type: type as "Revenu" | "Depense",
             date: new Date().toDateString()
         }
@@ -51,9 +62,20 @@ const FormulaireTransaction = ({ onAjouter }: Props) => {
 
                 <div className="mb-3">
                     <label className="form-label">Type</label>
-                    <select className="form-select" value={type} onChange={(e) => setType(e.target.value)}>
+                    <select className="form-select" value={type} onChange={(e) => setType(e.target.value)} required>
                         <option value="Revenu">Revenu</option>
                         <option value="Depense">Depense</option>
+                    </select>
+                </div>
+                <div className="mb-3 mt-4">
+                    <label className="form-label">Catégories</label>
+                    <select className="form-select" value={categorie} onChange={(e) => setCategorie(e.target.value)} required>
+                        <option value="" disabled>Choisir un catégorie</option>
+                        {
+                            categories.map((cat, index) => (
+                                <option key={index} value={cat}> {cat}</option>
+                            ))
+                        }
                     </select>
                 </div>
 

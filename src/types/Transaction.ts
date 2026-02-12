@@ -4,5 +4,6 @@ export interface Transaction {
     titre: string,
     montant: number,
     type: "Revenu" | "Depense",
-    date: string,
+    categorie: string,
+    date: string
 }

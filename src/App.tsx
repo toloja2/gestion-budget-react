@@ -6,6 +6,7 @@ import { useLocalStorage } from './hooks/useLocalStorage';
 import Dashboard from './pages/Dashboard';
 import Statistiques from './pages/Statistiques';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import Graphe from './composants/Graphe';
 
 function App() {
 
@@ -18,6 +19,9 @@ function App() {
     setTransactions(transactions.filter(t => t.id !== id));
   }
 
+  const transactionFiltresRevenu = transactions.filter((t) => t.type === "Revenu");
+  const transactionFiltresDepense = transactions.filter((t) => t.type === "Depense");
+
   return (
 
 
@@ -29,8 +33,10 @@ function App() {
         </h1>
 
         <nav className="mb-4">
-          <Link to="/" className='btn btn-primary me-2'>Dashboard</Link>
-          <Link to="/statistiques" className='btn btn-secondary'>Statistiques</Link>
+          <Link to="/" className='btn btn-primary me-3 mb-4'>Dashboard</Link>
+          <Link to="/statistiques" className='btn btn-secondary me-3 mb-4'>Statistiques</Link>
+          <Link to="/statistiques/Revenu" className="btn btn-success me-3 mb-4">Détail des revenus</Link>
+          <Link to="/statistiques/Depense" className="btn btn-danger me-2 mb-4 ">Détail des dépenses </Link>
         </nav>
 
         <Routes>
@@ -38,12 +44,25 @@ function App() {
             transactions={transactions}
             onAjouter={ajouterTransaction}
             onSupprimer={supprimerTransaction}
-          />}/>
+          />} />
 
           <Route path='/statistiques' element={
-            <Statistiques transactions={transactions}/>
+            <>
+            <Statistiques transactions={transactions}  onSupprimer={supprimerTransaction} typeStatistiques='Revenu et Dépense'/>
+            <Graphe transactions={transactions} />
+            </>
+            
           }
-           />
+          />
+
+          <Route path='/statistiques/Revenu' element={
+            <Statistiques transactions={transactionFiltresRevenu}  onSupprimer={supprimerTransaction} typeStatistiques='Revenu'/>
+          }
+          />
+          <Route path='/statistiques/Depense' element={
+            <Statistiques transactions={transactionFiltresDepense} onSupprimer={supprimerTransaction} typeStatistiques='Dépense' />
+          }
+          />
 
         </Routes>
 
