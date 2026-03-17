@@ -14,11 +14,11 @@ interface Props {
 const Dashboard = ({ transactions, onAjouter, onSupprimer }: Props) => {
     return (
 
-        <div className="row align-items-center">
-            <div className="col-md-5">
+        <div className="row align-items-center ">
+            <div className="col-lg-5">
                 <FormulaireTransaction onAjouter={onAjouter} />
             </div>
-            <div className="col-md-7">
+            <div className="col-lg-7">
                 <CarteResume transactions={transactions} />
                 <ListeTransactions transactions={transactions} onSupprimer={onSupprimer} typeMessageVide="revenu et depense"/>
             </div>

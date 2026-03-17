@@ -1,0 +1,13 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+#root{
+    background-color: rgba(128, 128, 128, 0.164);
+    top: 0;
+    padding-top: 10px;
+}
+

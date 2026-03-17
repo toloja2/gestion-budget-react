@@ -26,17 +26,22 @@ function App() {
 
 
     <BrowserRouter>
-      <div className="container mt-5">
+      <div className="container mt-5 ">
 
         <h1 className="text-center text-primary mb-4 fw-bold">
           Gestionnaire de Budget
         </h1>
 
-        <nav className="mb-4">
-          <Link to="/" className='btn btn-primary me-3 mb-4'>Dashboard</Link>
-          <Link to="/statistiques" className='btn btn-secondary me-3 mb-4'>Statistiques</Link>
-          <Link to="/statistiques/Revenu" className="btn btn-success me-3 mb-4">Détail des revenus</Link>
-          <Link to="/statistiques/Depense" className="btn btn-danger me-2 mb-4 ">Détail des dépenses </Link>
+        <nav className="mb-4 md-row col">
+          <div className=' col-12'>
+            <Link to="/" className='btn btn-primary me-3 mb-4 col-12 col-sm-5 hover'>Dashboard</Link>
+            <Link to="/statistiques" className='btn btn-secondary me-3 mb-4 col-12 col-sm-5 hover'>Statistiques</Link>
+          </div>
+          <div className='col-12'>
+             <Link to="/statistiques/Revenu" className="btn btn-success me-3 col-12 mb-4 col-sm-5 hover">Détail des revenus</Link>
+            <Link to="/statistiques/Depense" className="btn btn-danger me-2 mb-4 col-12 col-sm-5 hover">Détail des dépenses </Link>
+          </div>
+
         </nav>
 
         <Routes>
